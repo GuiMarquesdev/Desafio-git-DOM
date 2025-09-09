@@ -1,4 +1,11 @@
-import { MapPin, Phone, Mail, Instagram, MessageCircle, Clock } from "lucide-react";
+import {
+  MapPin,
+  Phone,
+  Mail,
+  Instagram,
+  MessageCircle,
+  Clock,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const ContactSection = () => {
@@ -8,28 +15,28 @@ const ContactSection = () => {
       title: "WhatsApp",
       info: "(11) 99999-9999",
       action: () => window.open("https://wa.me/5511999999999", "_blank"),
-      actionText: "Chamar no WhatsApp"
+      actionText: "Chamar no WhatsApp",
     },
     {
       icon: <Instagram className="w-6 h-6" />,
       title: "Instagram",
       info: "@looksdehoje",
       action: () => window.open("https://instagram.com/looksdehoje", "_blank"),
-      actionText: "Seguir no Instagram"
+      actionText: "Seguir no Instagram",
     },
     {
       icon: <Mail className="w-6 h-6" />,
       title: "E-mail",
       info: "contato@looksdehoje.com.br",
       action: () => window.open("mailto:contato@looksdehoje.com.br", "_blank"),
-      actionText: "Enviar E-mail"
-    }
+      actionText: "Enviar E-mail",
+    },
   ];
 
   const workingHours = [
     { day: "Segunda a Sexta", hours: "09:00 - 18:00" },
     { day: "Sábado", hours: "09:00 - 16:00" },
-    { day: "Domingo", hours: "Fechado" }
+    { day: "Domingo", hours: "Fechado" },
   ];
 
   return (
@@ -41,7 +48,8 @@ const ContactSection = () => {
             Contato & Localização
           </h2>
           <p className="font-montserrat text-lg text-muted-foreground max-w-2xl mx-auto">
-            Entre em contato conosco ou visite nossa loja física. Estamos prontas para ajudar você a encontrar o look perfeito.
+            Entre em contato conosco ou visite nossa loja física. Estamos
+            prontas para ajudar você a encontrar o look perfeito.
           </p>
         </div>
 
@@ -55,7 +63,7 @@ const ContactSection = () => {
                   key={index}
                   className="luxury-card p-6 flex items-center space-x-4 hover-lift group"
                 >
-                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-gradient-gold-subtle flex items-center justify-center text-primary group-hover:scale-110 transition-transform duration-300">
+                  <div className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center text-primary group-hover:scale-110 transition-transform duration-300">
                     {contact.icon}
                   </div>
                   <div className="flex-grow">
@@ -87,7 +95,10 @@ const ContactSection = () => {
               </div>
               <div className="space-y-3">
                 {workingHours.map((schedule, index) => (
-                  <div key={index} className="flex justify-between items-center">
+                  <div
+                    key={index}
+                    className="flex justify-between items-center"
+                  >
                     <span className="font-montserrat text-muted-foreground">
                       {schedule.day}
                     </span>
@@ -111,15 +122,22 @@ const ContactSection = () => {
                     Nossa Loja
                   </h3>
                   <address className="font-montserrat text-muted-foreground not-italic leading-relaxed">
-                    Rua das Flores, 123<br />
-                    Vila Madalena, São Paulo - SP<br />
+                    Rua das Flores, 123
+                    <br />
+                    Vila Madalena, São Paulo - SP
+                    <br />
                     CEP: 05432-000
                   </address>
                 </div>
               </div>
               <Button
                 className="w-full bg-gradient-gold hover:bg-primary-dark text-primary-foreground font-montserrat font-semibold py-3 rounded-full shadow-gold transition-all duration-300"
-                onClick={() => window.open("https://maps.google.com/?q=Rua+das+Flores+123+Vila+Madalena+São+Paulo", "_blank")}
+                onClick={() =>
+                  window.open(
+                    "https://maps.google.com/?q=Rua+das+Flores+123+Vila+Madalena+São+Paulo",
+                    "_blank"
+                  )
+                }
               >
                 <MapPin className="w-4 h-4 mr-2" />
                 Ver no Google Maps
@@ -138,7 +156,7 @@ const ContactSection = () => {
                     Vila Madalena, São Paulo
                   </p>
                 </div>
-                
+
                 {/* Decorative elements */}
                 <div className="absolute top-4 left-4 w-8 h-8 border-2 border-primary/30 rounded-full animate-pulse" />
                 <div className="absolute bottom-6 right-6 w-6 h-6 border-2 border-primary/50 rounded-full animate-pulse delay-300" />
@@ -155,19 +173,27 @@ const ContactSection = () => {
               Pronta para alugar seu próximo look?
             </h3>
             <p className="font-montserrat text-muted-foreground mb-6">
-              Entre em contato conosco agora mesmo e descubra como é fácil alugar roupas incríveis para suas ocasiões especiais.
+              Entre em contato conosco agora mesmo e descubra como é fácil
+              alugar roupas incríveis para suas ocasiões especiais.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button 
-                onClick={() => window.open("https://wa.me/5511999999999?text=Olá! Gostaria de alugar uma roupa para uma ocasião especial.", "_blank")}
+              <Button
+                onClick={() =>
+                  window.open(
+                    "https://wa.me/5511999999999?text=Olá! Gostaria de alugar uma roupa para uma ocasião especial.",
+                    "_blank"
+                  )
+                }
                 className="bg-gradient-gold hover:bg-primary-dark text-primary-foreground font-montserrat font-semibold px-8 py-3 rounded-full shadow-gold transition-all duration-300 hover:-translate-y-0.5"
               >
                 <MessageCircle className="w-4 h-4 mr-2" />
                 Falar no WhatsApp
               </Button>
-              <Button 
+              <Button
                 variant="outline"
-                onClick={() => window.open("https://instagram.com/looksdehoje", "_blank")}
+                onClick={() =>
+                  window.open("https://instagram.com/looksdehoje", "_blank")
+                }
                 className="border-2 border-primary text-primary hover:bg-gradient-gold hover:text-primary-foreground hover:border-transparent font-montserrat font-semibold px-8 py-3 rounded-full transition-all duration-300 hover:-translate-y-0.5"
               >
                 <Instagram className="w-4 h-4 mr-2" />
