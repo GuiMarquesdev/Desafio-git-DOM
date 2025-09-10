@@ -1,41 +1,42 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
-import { useAdmin } from '@/contexts/AdminContext';
-import { toast } from 'sonner';
-import { Crown } from 'lucide-react';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { useAdmin } from "@/contexts/AdminContext";
+import { toast } from "sonner";
+import { Crown, Eye, EyeOff } from "lucide-react"; // Importa os novos ícones
 
 const AdminLogin = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false); // Novo estado
   const { login } = useAdmin();
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!username || !password) {
-      toast.error('Por favor, preencha todos os campos');
+      toast.error("Por favor, preencha todos os campos");
       return;
     }
 
     setLoading(true);
-    
+
     try {
       const success = await login(password);
-      
+
       if (success) {
-        toast.success('Login realizado com sucesso!');
-        navigate('/admin/dashboard');
+        toast.success("Login realizado com sucesso!");
+        navigate("/admin/dashboard");
       } else {
-        toast.error('Credenciais inválidas');
+        toast.error("Credenciais inválidas");
       }
     } catch (error) {
-      toast.error('Erro ao fazer login');
+      toast.error("Erro ao fazer login");
     } finally {
       setLoading(false);
     }
@@ -58,7 +59,9 @@ const AdminLogin = () => {
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="username" className="font-montserrat">Usuário</Label>
+              <Label htmlFor="username" className="font-montserrat">
+                Usuário
+              </Label>
               <Input
                 id="username"
                 type="text"
@@ -70,23 +73,40 @@ const AdminLogin = () => {
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="password" className="font-montserrat">Senha</Label>
-              <Input
-                id="password"
-                type="password"
-                placeholder="Digite a senha"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="font-montserrat"
-                disabled={loading}
-              />
+              <Label htmlFor="password" className="font-montserrat">
+                Senha
+              </Label>
+              <div className="relative">
+                <Input
+                  id="password"
+                  type={showPassword ? "text" : "password"} // Tipo dinâmico
+                  placeholder="Digite a senha"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="font-montserrat pr-10" // Adiciona padding para o botão
+                  disabled={loading}
+                />
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="icon"
+                  className="absolute inset-y-0 right-0 h-full w-10 text-muted-foreground hover:bg-transparent"
+                  onClick={() => setShowPassword(!showPassword)} // Alterna a visibilidade
+                >
+                  {showPassword ? (
+                    <EyeOff className="h-4 w-4" />
+                  ) : (
+                    <Eye className="h-4 w-4" />
+                  )}
+                </Button>
+              </div>
             </div>
             <Button
               type="submit"
               className="w-full bg-primary hover:bg-primary-dark text-primary-foreground font-montserrat font-medium"
               disabled={loading}
             >
-              {loading ? 'Entrando...' : 'Entrar no Painel'}
+              {loading ? "Entrando..." : "Entrar no Painel"}
             </Button>
           </form>
         </CardContent>
